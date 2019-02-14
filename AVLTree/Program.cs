@@ -6,11 +6,11 @@ namespace AVLTree
     {
         static void Main(string[] args)
         {
-            var tree = new BinaryTree();
+            var tree = new AVLTree<int>();
             var random = new Random();
-            for (int i = 0; i < 1000; i++)
+            for (var i = 0; i < 10; i++)
             {
-                tree.Insert(random.Next(0, 1000));
+                tree.Insert(random.Next(0, 100));
             }
         }
     }
