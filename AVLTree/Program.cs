@@ -6,7 +6,7 @@ namespace AVLTree
     {
         static void Main(string[] args)
         {
-            var tree = new AVLTree<int>();
+            var tree = new RedBlackTree<int>();
             var random = new Random();
             for (var i = 0; i < 10; i++)
             {

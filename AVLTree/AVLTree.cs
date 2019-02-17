@@ -27,21 +27,21 @@ namespace AVLTree
             InsertInternal(_root, item);
         }
 
-        private Node InsertInternal(Node node, T item)
+        private Node InsertInternal(Node parentNode, T item)
         {
-            if (node == null) return new Node(item);
+            if (parentNode == null) return new Node(item);
             
             // if item less when node.Item
-            if (_comparer.Compare(item, node.Item) < 0)
+            if (_comparer.Compare(item, parentNode.Item) < 0)
             {
-                node.Left = InsertInternal(node.Left, item);
+                parentNode.Left = InsertInternal(parentNode.Left, item);
             }
             else
             {
-                node.Right = InsertInternal(node.Right, item);
+                parentNode.Right = InsertInternal(parentNode.Right, item);
             }
 
-            return Balance(node);
+            return Balance(parentNode);
         }
 
         private Node Balance(Node node)
