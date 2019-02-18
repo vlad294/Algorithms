@@ -1,10 +1,11 @@
 ﻿using System;
+using DataStructures.Trees;
 
-namespace AVLTree
+namespace DataStructures
 {
     internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             var tree = new RedBlackTree<int>();
             var random = new Random();

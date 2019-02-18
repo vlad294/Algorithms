@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 
-namespace AVLTree
+namespace DataStructures.Trees
 {
     public class RedBlackTree<T>
     {
-        private Node root;
+        private Node _root;
         private readonly IComparer<T> _comparer;
 
         public RedBlackTree()
@@ -26,15 +26,15 @@ namespace AVLTree
 
         private Node InsertInternal(Node newNode)
         {
-            if (root == null)
+            if (_root == null)
             {
-                root = newNode;
+                _root = newNode;
                 return newNode;
             }
 
             if (newNode.Parent == null)
             {
-                newNode.Parent = root;
+                newNode.Parent = _root;
             }
 
             if (_comparer.Compare(newNode.Item, newNode.Parent.Item) < 0)
@@ -67,7 +67,7 @@ namespace AVLTree
         {
             // STEP 0
             // The current node is at the root of the tree
-            if (node == root)
+            if (node == _root)
             {
                 node.Color = NodeColor.Black;
                 return node;
@@ -148,12 +148,9 @@ namespace AVLTree
 
         private Node GetGrandparent(Node node) => node.Parent?.Parent;
 
-        private Node RotateLeft(Node node)
+        private void RotateLeft(Node node)
         {
-            if (node.Right == null)
-            {
-                return node;
-            }
+            if (node.Right == null) return;
 
             // Pivot on right child
             var pivotNode = node.Right;
@@ -162,7 +159,7 @@ namespace AVLTree
             bool isLeftChild = node.Parent.Left == node;
 
             // Check if currentNode is the Root
-            bool isRootNode = node == root;
+            bool isRootNode = node == _root;
 
             // Perform the rotation
             node.Right = pivotNode.Left;
@@ -180,7 +177,7 @@ namespace AVLTree
             //Update the entire tree's Root if necessary
             if (isRootNode)
             {
-                root = pivotNode;
+                _root = pivotNode;
             }
 
             // update the original parent's child node
@@ -195,16 +192,11 @@ namespace AVLTree
                     node.Parent.Right = pivotNode;
                 }
             }
-
-            return node;
         }
 
-        private Node RotateRight(Node node)
+        private void RotateRight(Node node)
         {
-            if (node.Left == null)
-            {
-                return node;
-            }
+            if (node.Left == null) return;
 
             // Pivot on left child
             var pivotNode = node.Left;
@@ -213,7 +205,7 @@ namespace AVLTree
             bool isLeftChild = node.Parent.Left == node;
 
             // Check if currentNode is the Root
-            bool isRootNode = node == root;
+            bool isRootNode = node == _root;
 
             // Perform the rotation
             node.Left = pivotNode.Right;
@@ -231,7 +223,7 @@ namespace AVLTree
             //Update the entire tree's Root if necessary
             if (isRootNode)
             {
-                root = pivotNode;
+                _root = pivotNode;
             }
 
             // update the original parent's child node
@@ -246,8 +238,6 @@ namespace AVLTree
                     node.Parent.Right = pivotNode;
                 }
             }
-
-            return node;
         }
 
         internal class Node

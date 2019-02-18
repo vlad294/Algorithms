@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace AVLTree
+namespace DataStructures.Trees
 {
     public class AVLTree<T>
     {
